@@ -19,11 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Report.API", "MicroServices
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contact.API.Entities", "MicroServices\ContactAPI\Contact.API.Entities\Contact.API.Entities.csproj", "{44F9A0C5-8D67-4491-B425-AC198A3B91B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contact.API.Services", "MicroServices\ContactAPI\Contact.API.Services\Contact.API.Services.csproj", "{DC70A715-C854-4B89-A238-CB48C248260A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contact.API.Services", "MicroServices\ContactAPI\Contact.API.Services\Contact.API.Services.csproj", "{DC70A715-C854-4B89-A238-CB48C248260A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contact.API.Common", "MicroServices\ContactAPI\Contact.API.Common\Contact.API.Common.csproj", "{331EE563-57BA-4BBC-8368-562CBCC54628}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contact.API.DataAccess", "MicroServices\ContactAPI\Contact.API.DataAccess\Contact.API.DataAccess.csproj", "{3C7BE382-8579-4327-B45E-6C19AF14216C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contact.API.DataAccess", "MicroServices\ContactAPI\Contact.API.DataAccess\Contact.API.DataAccess.csproj", "{3C7BE382-8579-4327-B45E-6C19AF14216C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

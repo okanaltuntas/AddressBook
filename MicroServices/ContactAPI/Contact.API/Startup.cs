@@ -11,6 +11,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Contact.API.Services.IServices;
+using Contact.API.Services.Services;
+using Contact.API.DataAccess.GenericRepository;
+using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace Contact.API
 {
@@ -26,8 +31,18 @@ namespace Contact.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IContactService, ContactService>();
+            services.AddScoped<IContactInformationService, ContactInformationService>();
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            
             services.AddControllers();
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Contact.API", Version = "v1" });
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,6 +52,11 @@ namespace Contact.API
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             app.UseRouting();
 
@@ -49,3 +69,4 @@ namespace Contact.API
         }
     }
 }
+

@@ -8,6 +8,12 @@ namespace Contact.API.DataAccess
         {
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer(@"Server=localhost;Database=Contacts;Persist Security Info=True;Trusted_Connection=True");
+        }
+
+
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
