@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Contact.API.Common\Contact.API.Common.csproj" />
+  </ItemGroup>
+
 </Project>
