@@ -1,0 +1,34 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/{url}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5146
+        }
+      ],
+      "UpstreamPathTemplate": "/api/contact/{url}",
+      "UpstreamHttpMethod": [ "Get" ,"Post","Put","Delete"]
+
+    },
+    {
+      "DownstreamPathTemplate": "/api/{url}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 47717
+        }
+      ],
+      "UpstreamPathTemplate": "/api/report/{url}",
+      "UpstreamHttpMethod": [ "Get" ]
+    }
+  ],
+
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:51360"
+  }
+}
+
