@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Report.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     public class LocationReportController : ControllerBase
     {
         private readonly ILocationReportService _locationReportService;
@@ -16,9 +16,26 @@ namespace Report.API.Controllers
         {
             _locationReportService = locationReportService;
         }
-        public async Task<IActionResult> NumberOfPeopleAtLocationAsync()
+
+        [HttpGet]
+        public IActionResult NumberOfPeopleAtLocation()
         {
-            return Ok();
+            _locationReportService.GenerateLocationReport();
+
+            var model = _locationReportService.ListAsync(x => !x.IsDeleted).GetAwaiter().GetResult().Select(x =>
+                       new { x.LocationName, x.ContactCount });
+            return Ok(model);
         }
+
+
+
+        [HttpGet]
+        public IActionResult NumberOfPhoneAtLocation()
+        {
+            var model = _locationReportService.ListAsync(x => !x.IsDeleted).GetAwaiter().GetResult().Select(x =>
+                         new { x.LocationName, x.PhoneNumberCount });
+            return Ok(model);
+        }
+
     }
 }
