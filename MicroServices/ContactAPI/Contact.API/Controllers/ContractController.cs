@@ -1,13 +1,10 @@
 ﻿using Contact.API.Services.IServices;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Contact.API.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ContractController : ControllerBase
     {
@@ -17,10 +14,35 @@ namespace Contact.API.Controllers
             _contactService = contactService;
         }
 
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetContact(string id)
+        {
+            return Ok(await _contactService.GetByIdAsync(id));
+        }
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             return Ok(await _contactService.ListAsync(x => !x.IsDeleted));
         }
+        [HttpPost]
+        public async Task<IActionResult> Create(Entities.Contact contact)
+        {
+            return Ok(await _contactService.AddAsync(contact));
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Update(Entities.Contact contact)
+        {
+            return Ok(await _contactService.UpdateAsync(contact));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(string id)
+        {
+            return Ok(await _contactService.DeleteAsync(id));
+        }
+
+       
     }
 }
