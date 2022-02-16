@@ -2,24 +2,63 @@
 using Report.API.Model;
 using Report.API.Services.Abstract;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Report.API.Common.Enums;
+using Microsoft.EntityFrameworkCore;
 
 namespace Report.API.Services.Concrete
 {
     public class LocationReportService : ILocationReportService
     {
         private readonly IGenericRepository<NumbersOfAtLocation> _repo;
+        private readonly IGenericRepository<ContactInformation> _repoContactInformation;
+        private readonly IGenericRepository<Contact> _repoContact;
 
-        public LocationReportService(IGenericRepository<NumbersOfAtLocation> repo)
+        public LocationReportService(IGenericRepository<NumbersOfAtLocation> repo, IGenericRepository<Contact> repoContact, IGenericRepository<ContactInformation> repoContactInformation)
         {
             _repo = repo;
+            _repoContactInformation = repoContactInformation;
+            _repoContact = repoContact;
         }
 
         public async Task<bool> GenerateLocationReport()
         {
-            return true ;
+
+            try
+            {
+                var result = await _repoContact.Queryable().
+                    Where(x => x.ContactInformations.Any(q => q.Type == InformationType.Location))
+                   .Select(x => new
+                   {
+                       Location = x.ContactInformations.First(q => q.Type == InformationType.Location).Value,
+                       PhoneNumberCount = x.ContactInformations.Count(q => q.Type == InformationType.PhoneNumber)
+                   }).ToListAsync();
+
+                var newNumbersOfAtLocations = result
+                    .GroupBy(x => x.Location)
+                    .Select(g => new NumbersOfAtLocation
+                    {
+                        LocationName = g.Key,
+                        ContactCount = g.Count(),
+                        PhoneNumberCount = g.Sum(x => x.PhoneNumberCount),
+                    }).ToList();
+
+
+                var oldnumbersOfAtLocations = await _repo.ListAsync(x => !x.IsDeleted);
+
+                var addResult = _repo.AddBulk(newNumbersOfAtLocations);
+                if (addResult)
+                    _repo.DeleteBulk(oldnumbersOfAtLocations);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
         }
 
 
