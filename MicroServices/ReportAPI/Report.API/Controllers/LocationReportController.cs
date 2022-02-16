@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Report.API.Services.Abstract;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Report.API.Controllers
 {
@@ -20,10 +17,8 @@ namespace Report.API.Controllers
         [HttpGet]
         public IActionResult NumberOfPeopleAtLocation()
         {
-            _locationReportService.GenerateLocationReport();
-
-            var model = _locationReportService.ListAsync(x => !x.IsDeleted).GetAwaiter().GetResult().Select(x =>
-                       new { x.LocationName, x.ContactCount });
+            var model = _locationReportService.ListAsync(x => !x.IsDeleted).GetAwaiter().GetResult()
+                .Select(x => new { x.LocationName, x.ContactCount }).OrderByDescending(x => x.ContactCount);
             return Ok(model);
         }
 
@@ -32,8 +27,8 @@ namespace Report.API.Controllers
         [HttpGet]
         public IActionResult NumberOfPhoneAtLocation()
         {
-            var model = _locationReportService.ListAsync(x => !x.IsDeleted).GetAwaiter().GetResult().Select(x =>
-                         new { x.LocationName, x.PhoneNumberCount });
+            var model = _locationReportService.ListAsync(x => !x.IsDeleted).GetAwaiter().GetResult()
+                .Select(x => new { x.LocationName, x.PhoneNumberCount }).OrderByDescending(x => x.PhoneNumberCount);
             return Ok(model);
         }
 
