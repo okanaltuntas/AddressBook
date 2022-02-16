@@ -9,5 +9,6 @@ namespace Report.API.Model
     {
         public InformationType Type { get; set; }
         public string Value { get; set; }
+        public string ContactUUID { get; set; }
     }
 }

@@ -6,9 +6,9 @@ namespace Report.API.Model
     public class BaseEntity
     {
         [Key]
-        public string UUID { get; set; }
-        public bool IsDeleted { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime ModifiedDate { get; set; }
+        public string UUID { get; set; } = Guid.NewGuid().ToString();
+        public bool IsDeleted { get; set; } = false;
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
+        public DateTime ModifiedDate { get; set; } = DateTime.Now;
     }
 }

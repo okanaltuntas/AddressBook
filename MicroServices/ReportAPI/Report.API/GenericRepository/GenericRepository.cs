@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Report.API.Model;
+using EFCore.BulkExtensions;
 
 namespace Report.API.GenericRepository
 {
@@ -52,6 +53,39 @@ namespace Report.API.GenericRepository
         {
             return await context.FindAsync(id);
         }
+
+        public IQueryable<T> Queryable()
+        {
+            return context.AsQueryable();
+        }
+
+        public bool AddBulk(List<T> entities)
+        {
+            try
+            {
+                db.BulkInsert(entities);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool DeleteBulk(List<T> entities)
+        {
+            try
+            {
+                db.BulkDelete(entities);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+
 
         public async Task<List<T>> ListAsync(Expression<Func<T, bool>> filter = null)
         {
