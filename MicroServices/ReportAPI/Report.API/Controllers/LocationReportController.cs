@@ -18,7 +18,7 @@ namespace Report.API.Controllers
         public IActionResult NumberOfPeopleAtLocation()
         {
             var model = _locationReportService.ListAsync(x => !x.IsDeleted).GetAwaiter().GetResult()
-                .Select(x => new { x.LocationName, x.ContactCount }).OrderByDescending(x => x.ContactCount);
+                .Select(x => new { x.LocationName, x.ContactCount, x.CreatedDate }).OrderByDescending(x => x.ContactCount);
             return Ok(model);
         }
 
@@ -28,7 +28,7 @@ namespace Report.API.Controllers
         public IActionResult NumberOfPhoneAtLocation()
         {
             var model = _locationReportService.ListAsync(x => !x.IsDeleted).GetAwaiter().GetResult()
-                .Select(x => new { x.LocationName, x.PhoneNumberCount }).OrderByDescending(x => x.PhoneNumberCount);
+                .Select(x => new { x.LocationName, x.PhoneNumberCount, x.CreatedDate }).OrderByDescending(x => x.PhoneNumberCount);
             return Ok(model);
         }
 

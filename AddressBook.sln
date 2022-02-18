@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contact.API.Common", "Micro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contact.API.DataAccess", "MicroServices\ContactAPI\Contact.API.DataAccess\Contact.API.DataAccess.csproj", "{3C7BE382-8579-4327-B45E-6C19AF14216C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Report.API.Consumer", "MicroServices\ReportAPI\Report.API.Consumer\Report.API.Consumer.csproj", "{B8CC8697-D667-488F-BF50-7C2A925AAF01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{3C7BE382-8579-4327-B45E-6C19AF14216C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C7BE382-8579-4327-B45E-6C19AF14216C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3C7BE382-8579-4327-B45E-6C19AF14216C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8CC8697-D667-488F-BF50-7C2A925AAF01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8CC8697-D667-488F-BF50-7C2A925AAF01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8CC8697-D667-488F-BF50-7C2A925AAF01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8CC8697-D667-488F-BF50-7C2A925AAF01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -73,6 +79,7 @@ Global
 		{DC70A715-C854-4B89-A238-CB48C248260A} = {DC350FDC-1189-44F4-867B-2C6256C8136C}
 		{331EE563-57BA-4BBC-8368-562CBCC54628} = {DC350FDC-1189-44F4-867B-2C6256C8136C}
 		{3C7BE382-8579-4327-B45E-6C19AF14216C} = {DC350FDC-1189-44F4-867B-2C6256C8136C}
+		{B8CC8697-D667-488F-BF50-7C2A925AAF01} = {BE2B7953-AB43-4443-A5E8-093D63983C04}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {63B20439-A082-403F-BE8B-94F2547BF7FC}

@@ -1,17 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
 using Report.API.Services.Abstract;
 using Report.API.GenericRepository;
 using Report.API.Services.Concrete;
@@ -31,18 +24,17 @@ namespace Report.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<ILocationReportService,  LocationReportService>();
-            services.AddScoped<IContactService, ContactService>();
-            services.AddScoped<IContactInformationService, ContactInformationService>();
-            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-
+            services.AddTransient<ILocationReportService,  LocationReportService>();
+            services.AddTransient<IContactService, ContactService>();
+            services.AddTransient<IContactInformationService, ContactInformationService>();
+            services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
             services.AddControllers();
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Contact.API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Report.API", Version = "v1" });
             });
         }
 
