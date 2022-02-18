@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Contact.API.DataAccess\Contact.API.DataAccess.csproj" />
     <ProjectReference Include="..\Contact.API.Entities\Contact.API.Entities.csproj" />
   </ItemGroup>
