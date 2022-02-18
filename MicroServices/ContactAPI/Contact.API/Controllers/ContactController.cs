@@ -6,10 +6,10 @@ namespace Contact.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ContractController : ControllerBase
+    public class ContactController : ControllerBase
     {
         private readonly IContactService _contactService;
-        public ContractController(IContactService contactService)
+        public ContactController(IContactService contactService)
         {
             _contactService = contactService;
         }
