@@ -32,25 +32,21 @@ namespace Contact.API.Services.Services
 
         public async Task<Entities.Contact> GetAsync(Expression<Func<Entities.Contact, bool>> filter)
         {
-            _queeService.GenerateReport();
             return await _repo.GetAsync(filter);
         }
 
         public async Task<Entities.Contact> GetByIdAsync(string id)
         {
-            _queeService.GenerateReport();
             return await _repo.GetByIdAsync(id);
         }
 
         public async Task<List<Entities.Contact>> ListAsync(Expression<Func<Entities.Contact, bool>> filter = null)
         {
-            _queeService.GenerateReport();
             return await _repo.ListAsync(filter);
         }
 
         public async Task<Entities.Contact> UpdateAsync(Entities.Contact entity)
         {
-            _queeService.GenerateReport();
             return await _repo.UpdateAsync(entity);
         }
     }

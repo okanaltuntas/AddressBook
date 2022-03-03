@@ -13,6 +13,8 @@ namespace Report.API.QueeConsumers
     {
         private readonly ILocationReportService _locationReportService;
         readonly string _queueName = "generateReport";
+        readonly string hostName = "localhost";
+
 
         public GenerateReportConsumer(ILocationReportService locationReportService)
         {
@@ -21,7 +23,7 @@ namespace Report.API.QueeConsumers
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            var factory = new ConnectionFactory() { HostName = "localhost" };
+            var factory = new ConnectionFactory() { HostName = hostName };
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
             {
